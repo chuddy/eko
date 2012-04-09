@@ -1,0 +1,15 @@
+<h1 style="text-align:center;">Editing user</h1><br><br>
+
+<%= render 'form' %>
+
+<br><br>
+<div class="row">
+  <div class="span6 offset3">
+    <%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails">change</a>
+  </div>
+</div>
+<br><br>
+
+<%#= link_to 'Show', @user %> <%#|%>    
+<%#= link_to 'Back', users_path %>
