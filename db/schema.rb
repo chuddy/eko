@@ -11,7 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120417174121) do
+ActiveRecord::Schema.define(:version => 20120518183509) do
+
+  create_table "products", :force => true do |t|
+    t.string   "name"
+    t.string   "category"
+    t.text     "description"
+    t.decimal  "price",              :precision => 10, :scale => 2, :default => 0.0, :null => false
+    t.string   "city"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.string   "sub_category"
+  end
+
+  add_index "products", ["user_id"], :name => "product_user_id_fk"
 
   create_table "users", :force => true do |t|
     t.string   "email"

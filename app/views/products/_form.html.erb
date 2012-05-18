@@ -1,0 +1,68 @@
+<%= form_for(@product, :html => { :multipart => true }) do |f| %>
+  <% if @product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% category_groups = 
+  [ 
+  ["For Sale", [["appliances", "appliances"], ["antiques", "antiques"], ["barter", "barter"], ["books", "books"], 
+  ["business", "business"], ["computer", "computer"], ["furniture", "furniture"], ["cars+trucks", "cars+trucks"], ["general", "general"]]], 
+  ["Jobs", [["accounting+finance", "accounting+finance"], ["art / media / design", "art / media / design"], ["business / mgmt", "business / mgmt"], 
+  ["customer service", "customer service"], ["general labour", "general labour"], ["legal / paralegal", "legal / paralegal"], ["salon / spa / fitness", "salon / spa / fitness"], 
+  ["IT", "IT"], ["transport", "transport"], ["tv / film / video", "tv / film / video"]]],   
+  ["Housing", [["apts / flats / housing", "apts / flats / housing"], ["rooms / shared", "rooms / shared"], ["sublets / temporary", "sublets / temporary"], ["housing wanted", "housing wanted"], 
+  ["housing swap", "housing swap"], ["vacation rentals", "vacation rentals"], ["parking / wharehouse", "parking / wharehouse"], ["office / commercial / store", "office / commercial / store"], 
+  ["real estate for sale", "real estate for sale"], ["Agents", "Agents"]]], 
+  ["Community", [["activities", "activities"], ["artists", "artists"], ["childcare", "childcare"], ["general", "general"], ["groups", "groups"], 
+  ["events", "events"], ["lost+found", "lost+found"], ["local news", "local news"], ["politics", "politics"], ["volunteers", "volunteers"]]], 
+  ["Services", [["beauty", "beauty"], ["computer", "computer"], ["childcare", "childcare"], ["general", "general"], ["mechanic", "mechanic"], ["pet", "pet"], 
+  ["farm+garden", "farm+garden"], ["household", "household"], ["labor/move", "labor/move"], ["volunteers", "volunteers"]]], 
+  ["Education", [["exam preps", "exam preps"], ["vacation class", "vacation class"], ["books / handouts", "books / handouts"]]], 
+  ] %>
+  
+  <br>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :category %>
+    <%= f.select :category, [['For Sale','For Sale'],['Jobs','Jobs'],['Housing','Housing'],['Community','Community'],['Services','Services'],['Education','Education']], {:prompt => 'Select something'}%>
+  </div>
+  <div class="field">
+    <%= f.label :sub_category %>
+    <%#= f.text_field :image %>
+    <%= f.select :sub_category, grouped_options_for_select(category_groups, selected_key =nil, prompt = 'Select something') %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description, :size => "30x12" %>
+  </div>
+  <div class="field">
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :city %>
+    <%= f.select :city, [['Ebute-Metta','Ebute-Metta'],['Shomolu','Shomolu'],['VI','VI'],['VGC','VGC'],['Surulere','Surulere'],['Yaba','Yaba']], {:prompt => 'Select something'}%>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :photo %>
+    <%= f.file_field :photo %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
