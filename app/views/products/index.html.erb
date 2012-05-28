@@ -27,8 +27,12 @@
         <td><%= product.city %></td>
         <td><%= product.user_id %></td>
         <td>
-          <%= link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+           <% if signed_in? %>
+             <% if (product.user_id == @user.id) %> 
+               <%= link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini' %>
+               <%= link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+            <% end %>
+          <% end %>
         </td>
       </tr>
     <% end %>

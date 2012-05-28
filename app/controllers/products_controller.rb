@@ -1,8 +1,10 @@
 class ProductsController < ApplicationController
+  before_filter :signed_in_user, only: [:new, :edit, :update, :destroy]
   # GET /products
   # GET /products.json
   def index
     @products = Product.all
+    @user = current_user
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +16,7 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
     @product = Product.find(params[:id])
+    @user = current_user
 
     respond_to do |format|
       format.html # show.html.erb
