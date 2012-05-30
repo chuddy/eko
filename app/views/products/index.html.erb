@@ -25,7 +25,7 @@
         <td><%= product.description %></td>
         <td><%= number_to_currency(product.price) %></td>
         <td><%= product.city %></td>
-        <td><%= product.created_at.strftime("%d-%m-%Y %H:%M:%S") %></td>
+        <td><%= product.created_at.strftime("%d-%m-%Y") %></td>
         <td>
            <% if signed_in? %>
              <% if (product.user_id == @user.id) %> 
