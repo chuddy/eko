@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_filter :signed_in_user, only: [:new, :edit, :update, :destroy]
+
   # GET /products
   # GET /products.json
   def index
@@ -11,6 +12,19 @@ class ProductsController < ApplicationController
       format.json { render json: @products }
     end
   end
+
+  def category
+    param1 = params[:param1]
+    param2 = params[:param2]
+    @products = Product.where("category = ? AND sub_category = ?", param1, param2)
+    @user = current_user
+
+    respond_to do |format|
+      format.html # category.html.erb
+      format.json { render json: @products }
+    end
+  end
+
 
   # GET /products/1
   # GET /products/1.json

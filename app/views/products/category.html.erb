@@ -1,0 +1,46 @@
+<legend><%= controller.action_name.capitalize %> of Products</legend>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Photo</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Sub_Category</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>City</th>
+      <th>Posted_Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to (image_tag product.photo.url(:small)), product_path(product) %></td>
+        <td><%= link_to product.name, product_path(product) %></td>
+        <td><%= product.category %></td>
+        <td><%= product.sub_category %></td>
+        <td><%= product.description %></td>
+        <td><%= number_to_currency(product.price) %></td>
+        <td><%= product.city %></td>
+        <td><%= product.created_at.strftime("%d-%m-%Y") %></td>
+        <td>
+           <% if signed_in? %>
+             <% if (product.user_id == @user.id) %> 
+               <%= link_to 'Edit', edit_product_path(product), :class => 'btn btn-mini' %>
+               <%= link_to 'Destroy', product_path(product), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<div class="form-actions">
+  <%= link_to 'New Product', new_product_path, :class => 'btn btn-primary' %> 
+</div>
