@@ -1,4 +1,9 @@
 <legend><%= controller.action_name.capitalize %> of Products</legend>
+
+<% if (@products.count < 1) %>
+   <p>No posted Ads.</p>
+<% else %>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -39,8 +44,10 @@
   </tbody>
 </table>
 
-<br />
+<% end %>
+
+</br>
 
 <div class="form-actions">
-  <%= link_to 'New Product', new_product_path, :class => 'btn btn-primary' %> 
+  <%= link_to 'Post New Advert', new_product_path, :class => 'btn btn-primary' %> 
 </div>
