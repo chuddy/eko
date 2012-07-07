@@ -1,0 +1,44 @@
+<%= form_for(@ad_contact, :html => { :multipart => true, :class => 'form-horizontal' }) do |f| %>
+  <% if @ad_contact.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ad_contact.errors.count, "error") %> prohibited this ad_contact from being saved:</h2>
+
+      <ul>
+      <% @ad_contact.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <br>
+  <fieldset>
+    <div class="control-group">
+      <%= f.label :"Your Name", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :name, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :"Your Email Address", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :email, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :"Your Phone Number", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :phone, :class => 'text_field' %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :"Enter an optional comment", :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_area :comment, :size => "30x12", :class => 'text_area' %>
+      </div>
+    </div>
+    <div class="form-actions">
+      <%= f.submit "Contact Seller", :class => 'btn btn-primary' %>
+    </div>
+ </fieldset>
+<% end %>

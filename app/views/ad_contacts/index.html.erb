@@ -1,0 +1,29 @@
+<h1>Listing ad_contacts</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Comment</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ad_contacts.each do |ad_contact| %>
+  <tr>
+    <td><%= ad_contact.name %></td>
+    <td><%= ad_contact.email %></td>
+    <td><%= ad_contact.phone %></td>
+    <td><%= ad_contact.comment %></td>
+    <td><%= link_to 'Show', ad_contact %></td>
+    <td><%= link_to 'Edit', edit_ad_contact_path(ad_contact) %></td>
+    <td><%= link_to 'Destroy', ad_contact, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ad contact', new_ad_contact_path %>

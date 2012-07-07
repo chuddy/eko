@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120518183509) do
+ActiveRecord::Schema.define(:version => 20120707170751) do
+
+  create_table "ad_contacts", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.text     "comment"
+    t.integer  "product_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "ad_contacts", ["product_id"], :name => "ad_contacts_product_id_fk"
 
   create_table "products", :force => true do |t|
     t.string   "name"
@@ -20,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20120518183509) do
     t.decimal  "price",              :precision => 10, :scale => 2, :default => 0.0, :null => false
     t.string   "city"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
@@ -34,8 +46,8 @@ ActiveRecord::Schema.define(:version => 20120518183509) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "remember_token"
   end
 

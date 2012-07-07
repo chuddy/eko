@@ -1,9 +1,12 @@
 Eko::Application.routes.draw do
 
+  resources :ad_contacts
+
   resources :products
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  
+
+  match '/contact',  :to => 'ad_contacts#new'  
   match '/category',  :to => 'products#category'
   match '/signup',  :to => 'users#new'
   match '/signin',  to: 'sessions#new'
