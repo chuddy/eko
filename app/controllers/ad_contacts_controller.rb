@@ -2,11 +2,9 @@ class AdContactsController < ApplicationController
   # GET /ad_contacts
   # GET /ad_contacts.json
   def index
-    @param1 = params[:param1]
-#    @ad_contacts = AdContact.all
-#   @ad_contacts = AdContact.where("product_id = ?",param1)
-   #@ad_contacts = AdContact.find_by_sql("select a.* from ad_contacts a where a.product_id = param1")
-    @ad_contacts = AdContact.find_by_sql("select a.* from ad_contacts a, products p where a.product_id  = p.id and p.user_id = 1 order by a.created_at DESC")
+    param1 = params[:param1]
+    #@ad_contacts = AdContact.all
+    @ad_contacts = AdContact.find_by_sql(["select a.* from ad_contacts a, products p where a.product_id  = p.id and p.user_id = ? order by a.created_at DESC",param1])
 
     respond_to do |format|
       format.html # index.html.erb
