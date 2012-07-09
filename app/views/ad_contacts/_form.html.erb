@@ -37,6 +37,10 @@
         <%= f.text_area :comment, :size => "30x12", :class => 'text_area' %>
       </div>
     </div>
+    <div>
+      <!-- assign product_id value -->
+      <%= f.hidden_field :product_id, :value => @param1 %>
+    </div>
     <div class="form-actions">
       <%= f.submit "Contact Seller", :class => 'btn btn-primary' %>
     </div>
